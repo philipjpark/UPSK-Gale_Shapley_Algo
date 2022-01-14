@@ -3,17 +3,18 @@
 using namespace std;
 
 bool ok(int q[], int c) {
+
+static int wp[3][3] = { {2,1,0},  // Woman Zero's preference
+  {0,1,2},  // Woman One's preference
+      {2,0,1} // Woman Two's preference
+      }; 
+
    static int mp[3][3] = { {0,2,1},  //  Man Zero's preference
   {0,2,1},  // Man One's preference
       {1,2,0} // Man Two's preference
       }; 
 
-   static int wp[3][3] = { {2,1,0},  // Woman Zero's preference
-  {0,1,2},  // Woman One's preference
-      {2,0,1} // Woman Two's preference
-      }; 
-
-// Conflict check
+// Check for any conflicts
    for (int i = 0; i < c; i++) {                   
       if (q[i] == q[c]) { return false;}
       if (mp[i][q[c]] < mp[i][q[i]] && wp[q[c]][i] < wp[q[c]][c]) 
